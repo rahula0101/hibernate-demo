@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +18,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "course")
 @NamedQueries(value = { @NamedQuery(name = "get_all_rows", query = "select c from Course c"),
 		@NamedQuery(name = "get_specific_rows", query = "select c from Course c where id =  :id ") })
+@Cacheable
 public class Course {
 
 	@Id
@@ -30,9 +34,11 @@ public class Course {
 	private String name;
 
 	@OneToMany(mappedBy = "course")
+	@JsonManagedReference
 	private List<Review> reviews = new ArrayList<>();
 
 	@ManyToMany(mappedBy="courses")
+	@JsonManagedReference
 	private List<Student> students = new ArrayList<>();
 
 	@UpdateTimestamp

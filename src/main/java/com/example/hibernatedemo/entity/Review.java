@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "review")
 public class Review {
@@ -25,6 +27,7 @@ public class Review {
 	private String rating;
 
 	@ManyToOne
+	@JsonBackReference
 	private Course course;
 	
 	@UpdateTimestamp

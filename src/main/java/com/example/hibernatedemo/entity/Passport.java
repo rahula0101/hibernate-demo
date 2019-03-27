@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "passport")
 public class Passport {
@@ -27,6 +29,7 @@ public class Passport {
 	// Note that for this mappedBy has to be declared in the entity "Passport"
 	// mappedBy = Name of the attribute in the student entity
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
+	@JsonManagedReference
 	private Student student;
 
 	@UpdateTimestamp

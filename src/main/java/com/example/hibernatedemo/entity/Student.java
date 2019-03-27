@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -29,6 +31,7 @@ public class Student {
 	private String name;
 
 	@OneToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Passport passport;
 
 	@UpdateTimestamp
@@ -40,6 +43,7 @@ public class Student {
 	@ManyToMany
 	// Helps in defining names of Join Table and corresponding columns
 	@JoinTable(name = "STUDENT_COURSE", joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"))
+	@JsonBackReference
 	private List<Course> courses = new ArrayList<>();
 
 	/**

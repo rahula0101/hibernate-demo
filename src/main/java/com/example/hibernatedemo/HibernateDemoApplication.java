@@ -16,7 +16,6 @@ import com.example.hibernatedemo.repository.CourseRepository;
 import com.example.hibernatedemo.repository.PassportRepository;
 import com.example.hibernatedemo.repository.ReviewRepository;
 import com.example.hibernatedemo.repository.StudentRepository;
-import com.example.hibernatedemo.service.JpqlCriteriaQuery;
 import com.example.hibernatedemo.service.JpqlService;
 
 @SpringBootApplication
@@ -38,9 +37,6 @@ public class HibernateDemoApplication implements CommandLineRunner {
 	
 	@Resource
 	JpqlService jpqlService;
-	
-	@Resource
-	JpqlCriteriaQuery jpqlCriteriaQuery;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HibernateDemoApplication.class, args);
